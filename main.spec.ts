@@ -1,76 +1,80 @@
-import {decimalToRoman, addRoman} from './main'
 import {expect} from 'chai';
 import 'mocha';
+import { Add } from './main';
 
-describe('Roman to Number', () => {
-  it('should return Roman numerals (I)', () => {
+
+describe('Add with empty string', () => {
+  it('should return 0', () => {
     // given
-    const number = 1;
+    const stringNumber = "";
 
     // when
-    const roman = decimalToRoman(number);
+    const result = Add(stringNumber);
 
     // then
-    expect(roman).equal('I');
+    expect(result).equal(0);
   });
-
-  it('should return Roman numerals (VI)', () => {
-    // given
-    const number = 6;
-
-    // when
-    const roman = decimalToRoman(number);
-
-    // then
-    expect(roman).equal('VI');
-  });
-
-  it('should return Roman numerals (CM)', () => {
-    // given
-    const number = 900;
-
-    // when
-    const roman = decimalToRoman(number);
-
-    // then
-    expect(roman).equal('CM');
-  });
-
-  it('should return Roman numerals (VIII)', () => {
-    // given
-    const number = 9;
-
-    // when
-    const roman = decimalToRoman(number);
-
-    // then
-    expect(roman).equal('IX');
-  });
-
 });
 
-describe('Calculation', () => {
-  it('I + I should be II', () => {
+describe('Add with 1 digit number string', () => {
+  it('should return 1', () => {
     // given
-    const romanNumber = decimalToRoman(1);
-    const romanNumber2 = decimalToRoman(1);
+    const stringNumber = "1";
 
     // when
-    const roman = addRoman(romanNumber, romanNumber2);
+    const result = Add(stringNumber);
 
     // then
-    expect(roman).equal('II');
+    expect(result).equal(1);
   });
 
-  it('IV + IV should be VIII', () => {
+  it('should return 5', () => {
     // given
-    const romanNumber = decimalToRoman(4);
-    const romanNumber2 = decimalToRoman(4);
+    const stringNumber = "5";
 
     // when
-    const roman = addRoman(romanNumber, romanNumber2);
+    const result = Add(stringNumber);
 
     // then
-    expect(roman).equal('VIII');
+    expect(result).equal(5);
+  });
+});
+
+describe('Add with 2 digit number string', () => {
+  it('1,2 should return 3', () => {
+    // given
+    const stringNumber = "1,2";
+
+    // when
+    const result = Add(stringNumber);
+
+    // then
+    expect(result).equal(3);
+  });
+});
+
+describe('Add with unknown digit number string', () => {
+  it('1,2,5,7 should return 15', () => {
+    // given
+    const stringNumber = "1,2,5,7";
+
+    // when
+    const result = Add(stringNumber);
+
+    // then
+    expect(result).equal(15);
+  });
+});
+
+describe('Handle new lines between numbers', () => {
+  it('1\\n2,3 should return 6', () => {
+    // given
+    const stringNumber = "1\n2,3";
+
+    // when
+    const result = Add(stringNumber);
+
+    // then
+    expect(result).equal(6);
   });
 });
