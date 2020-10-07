@@ -78,3 +78,16 @@ describe('Handle new lines between numbers', () => {
     expect(result).equal(6);
   });
 });
+
+describe('Support different delimiters', () => {
+  it('//;\\n1;2 should return 3', () => {
+    // given
+    const stringNumber = "//;\n1;2";
+
+    // when
+    const result = Add(stringNumber);
+
+    // then
+    expect(result).equal(3);
+  });
+});
