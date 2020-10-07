@@ -91,3 +91,13 @@ describe('Support different delimiters', () => {
     expect(result).equal(3);
   });
 });
+
+describe('Add negative numbers', () => {
+  it('-1,-2,3 should throw an exception "negatives not allowed -1,-2"', () => {
+    // given
+    const stringNumber = "-1,-2,3";
+
+    // then
+    expect(() => {Add(stringNumber);}).to.throw('negatives not allowed -1,-2');
+    });
+});
